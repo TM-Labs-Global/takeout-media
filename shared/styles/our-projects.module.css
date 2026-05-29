@@ -1,0 +1,190 @@
+.op-section {
+  width: 100%;
+  overflow: hidden;
+  background: linear-gradient(to right, var(--color-tertiary-500), var(--color-primary-500));
+  color: var(--color-white);
+}
+
+.op-gallery {
+  display: flex;
+  align-items: center;
+  padding-left: 12vw;
+  padding-right: 12vw;
+  min-height: 100vh;
+  will-change: transform;
+  width: max-content;
+}
+
+.op-gallery__opening-text {
+  margin: 0 10vw 0 14vw;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: var(--color-white);
+}
+
+.gallery__text-inner-title {
+  display: block;
+  font-family: var(--font-display);
+  font-size: var(--text-6xl);
+  font-weight: var(--weight-semibold);
+  font-style: italic;
+  line-height: 1.1;
+  max-width: 800px;
+  white-space: normal;
+}
+
+.gallery__text-inner-subtitle {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  font-weight: var(--weight-regular);
+  font-style: normal;
+  margin-top: 1.5rem;
+}
+
+.op-gallery__text {
+  font-family: var(--font-display);
+  font-size: var(--text-6xl);
+  font-weight: var(--weight-semibold);
+  font-style: italic;
+  line-height: 1.1;
+  margin: 0 24vw 0 3vw;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  -webkit-text-stroke: 1px var(--color-white);
+  text-stroke: 1px var(--color-white);
+  -webkit-text-fill-color: transparent;
+  text-fill-color: transparent;
+
+  transition: -webkit-text-fill-color 0.3s ease, text-fill-color 0.3s ease;
+  cursor: pointer;
+}
+
+.op-gallery__text:hover {
+  -webkit-text-fill-color: var(--color-white);
+  text-fill-color: var(--color-white);
+}
+
+.gallery__text-inner {
+  display: block;
+}
+
+.op-gallery__item {
+  margin: 0 3vw;
+  display: grid;
+  grid-template-areas:
+    ". ."
+    ". gallery-image"
+    ". .";
+  grid-template-columns: 6rem 21vmax;
+  grid-template-rows: 8rem 28vmax 3rem;
+  will-change: transform;
+  flex-shrink: 0;
+}
+
+.op-gallery__item:nth-child(even) {
+  padding-top: 10vh;
+}
+
+.op-gallery__item-img {
+  grid-area: gallery-image;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  will-change: transform;
+}
+
+.op-gallery__item-imginner {
+  width: 100%;
+  height: calc(100% + 14vh);
+  margin-top: -7vh;
+  will-change: transform;
+  background-size: cover;
+  background-position: 50% 0;
+}
+
+.op-gallery__item-caption {
+  grid-area: 1 / 1 / 4 / 3;
+  display: grid;
+  grid-template-areas:
+    "gallery-number gallery-title"
+    "gallery-link ."
+    "gallery-link gallery-tags";
+  grid-template-columns: 6rem auto;
+  grid-template-rows: 8rem auto 3rem;
+  pointer-events: none;
+  position: relative;
+  z-index: 10;
+}
+
+.op-gallery__item-number {
+  grid-area: gallery-number;
+  font-size: clamp(2.5rem, 9vw, 6.5rem);
+  justify-self: end;
+  padding-right: 2rem;
+  color: var(--color-white);
+  font-family: var(--font-display);
+  font-weight: var(--weight-extrabold);
+  font-style: italic;
+  align-self: center;
+}
+
+.op-gallery__item-title {
+  grid-area: gallery-title;
+  margin: 0;
+  font-size: clamp(2rem, 5vw, 4rem);
+  color: var(--color-white);
+  font-family: var(--font-display);
+  font-weight: var(--weight-extrabold);
+  font-style: italic;
+  align-self: center;
+}
+
+.op-gallery__item-link {
+  grid-area: gallery-link;
+  align-self: end;
+  font-size: 14px;
+  background: var(--color-primary-25);
+  color: var(--text-heading);
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  pointer-events: all;
+  text-decoration: none;
+  transition: background 0.3s ease, color 0.3s ease;
+  font-weight: var(--weight-medium);
+}
+
+.op-gallery__item-link:hover,
+.op-gallery__item-link:focus {
+  background: var(--color-primary-500);
+  color: var(--color-white);
+}
+
+.op-gallery__item-tags {
+  grid-area: gallery-tags;
+  justify-self: end;
+  font-size: 1rem;
+  text-align: left;
+  max-width: 280px;
+  align-self: start;
+  color: var(--color-white);
+  opacity: 1;
+  margin: 1rem 0 0 0;
+}
+
+@media (min-width: 1025px) {
+  .op-section {
+    padding-bottom: var(--spacing-25);
+  }
+}

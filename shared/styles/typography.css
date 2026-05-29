@@ -1,0 +1,337 @@
+:root {
+  /* Font Families */
+  --font-sans: 'Elms Sans', 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+
+  /* Font Sizes */
+  --text-xs: 0.75rem;
+  /* 12px */
+  --text-sm: 0.875rem;
+  /* 14px */
+  --text-base: 1rem;
+  /* 16px */
+  --text-lg: 1.125rem;
+  /* 18px */
+  --text-xl: 1.25rem;
+  /* 20px */
+  --text-2xl: 1.5rem;
+  /* 24px */
+  --text-3xl: 1.875rem;
+  /* 30px */
+  --text-4xl: 2.25rem;
+  /* 36px */
+  --text-5xl: 3rem;
+  /* 48px */
+  --text-6xl: 7.5rem; 
+  /* display-desktop | Playfair Display | SemiBold Italic | 120px | 120px */
+  --text-display2: 6.25rem;
+  /* display2-desktop | Playfair Display | SemiBold Italic | 100px | 100px */
+  --text-display3: 5rem;
+  /* display3-desktop | 80px | 80px */
+  --text-7xl: 4.5rem; 
+  /* h1-desktop | Playfair Display | SemiBold Italic | 72px | 72px */
+  --text-8xl: 3.75rem; 
+  /* h2-desktop | Playfair Display | SemiBold Italic | 60px | 60px */
+  --text-9xl: 2.5rem; 
+  /* h3-desktop | Playfair Display | SemiBold Italic | 40px | 40px */
+  --text-10xl: 2rem; 
+  /* h4-desktop | Playfair Display | Italic | 32px | 32px */
+
+  /* --text-11xl: 1.5rem; h5-desktop | Playfair Display | SemiBold Italic | 24px | 24px */
+  /* --text-12xl: 2rem; p1 | Elms Sans | Regular | 32px | 36px */
+  /* --text-13xl: 1.5rem; p2 | Elms Sans | Regular | 24px | 28px */
+  /* --text-14xl: 1.5rem; sub-heading | Elms Sans | Regular | 24px | 24px */
+  /* --text-15xl: 1.25rem; p5 | Elms Sans | Regular | 20px | 24px */
+  /* --text-16xl: 1.25rem; caption | Elms Sans | Regular | 20px | 20px */
+  /* --text-17xl: 1rem; p3-main-body-text | Elms Sans | Regular | 16px | 20px */
+  /* --text-18xl: 1rem; button-text | Elms Sans | SemiBold | 16px | 20px */
+
+  /* Font Weights */
+  --weight-thin: 100;
+  --weight-extralight: 200;
+  --weight-light: 300;
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+  --weight-extrabold: 800;
+  --weight-black: 900;
+
+  /* Line Heights */
+  --leading-none: 16px; /* 1 */
+  --leading-tight: 20px; /* 1.25 | caption, p3-main-body-text, button-text */
+  --leading-snug: 22px; /* 1.375 */
+  --leading-normal: 24px; /* 1.5 | h5-desktop, sub-heading, p5 */
+  --leading-relaxed: 26px; /* 1.625 */
+  --leading-spacious: 28px; /* p2 */
+  --leading-loose: 32px; /* 2 | h4-desktop */
+  --leading-extra-loose: 36px; /* p1 */
+  --leading-super-loose: 40px; /* h3-desktop */
+  --leading-ultra-loose: 60px; /* h2-desktop */
+  --leading-giant: 72px; /* h1-desktop */
+  --leading-hero: 120px; /* display-desktop */
+  --leading-display2: 100px; /* display2-desktop */
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--text-base);
+  line-height: var(--leading-normal);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.display-desktop,
+.display2-desktop,
+.display3-desktop {
+  font-family: var(--font-display);
+  color: var(--text-base);
+}
+
+/* ==========================================================
+   [INACTIVE: PLAYFAIR DISPLAY SETTINGS (ITALIC)]
+   ==========================================================
+.display-desktop {
+  font-size: var(--text-6xl);
+  font-weight: var(--weight-semibold);
+  font-style: italic;
+  line-height: var(--leading-hero);
+  text-transform: capitalize;
+}
+
+.display2-desktop {
+  font-size: var(--text-display2);
+  font-weight: var(--weight-semibold);
+  font-style: italic;
+  line-height: var(--leading-display2);
+  text-transform: capitalize;
+}
+
+h1, .h1-desktop {
+  font-size: var(--text-7xl);
+  font-weight: var(--weight-semibold);
+  font-style: italic;
+  line-height: var(--leading-giant);
+  text-transform: capitalize;
+}
+
+h2, .h2-desktop {
+  font-size: var(--text-8xl);
+  font-weight: var(--weight-semibold);
+  font-style: italic;
+  line-height: var(--leading-ultra-loose);
+  text-transform: capitalize;
+}
+
+h3, .h3-desktop {
+  font-size: var(--text-9xl);
+  font-weight: var(--weight-semibold);
+  font-style: italic;
+  line-height: var(--leading-super-loose);
+  text-transform: capitalize;
+}
+
+h4, .h4-desktop {
+  font-size: var(--text-10xl);
+  font-weight: var(--weight-regular);
+  font-style: italic;
+  line-height: var(--leading-loose);
+  text-transform: capitalize;
+}
+
+h5, .h5-desktop {
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-semibold);
+  font-style: italic;
+  line-height: var(--leading-normal);
+}
+
+h6 {
+  font-size: var(--text-xl);
+  font-weight: var(--weight-semibold);
+  font-style: italic;
+  line-height: var(--leading-snug);
+}
+========================================================== */
+
+/* ==========================================================
+   [ACTIVE: BRICOLAGE GROTESQUE SETTINGS (NORMAL)]
+   ========================================================== */
+.display-desktop {
+  font-size: var(--text-6xl);
+  font-weight: var(--weight-semibold);
+  font-style: normal;
+  line-height: var(--leading-hero);
+  text-transform: capitalize;
+}
+
+.display2-desktop {
+  font-size: var(--text-display2);
+  font-weight: var(--weight-semibold);
+  font-style: normal;
+  line-height: var(--leading-display2);
+  text-transform: capitalize;
+}
+
+.display3-desktop {
+  font-size: var(--text-display3);
+  font-weight: var(--weight-medium);
+  font-style: normal;
+  line-height: 1.05;
+}
+
+h1, .h1-desktop {
+  font-size: var(--text-7xl);
+  font-weight: var(--weight-extrabold);
+  font-style: normal;
+  line-height: var(--leading-giant);
+  text-transform: capitalize;
+}
+
+h2, .h2-desktop {
+  font-size: var(--text-8xl);
+  font-weight: var(--weight-extrabold);
+  font-style: normal;
+  line-height: var(--leading-ultra-loose);
+  text-transform: capitalize;
+}
+
+h3, .h3-desktop {
+  font-size: var(--text-9xl);
+  font-weight: var(--weight-semibold);
+  font-style: normal;
+  line-height: var(--leading-super-loose);
+  text-transform: capitalize;
+}
+
+h4, .h4-desktop {
+  font-size: var(--text-10xl);
+  font-weight: var(--weight-regular);
+  font-style: normal;
+  line-height: var(--leading-loose);
+  text-transform: capitalize;
+}
+
+h5, .h5-desktop {
+  font-size: var(--text-2xl); /* 24px */
+  font-weight: var(--weight-semibold);
+  font-style: normal;
+  line-height: var(--leading-normal);
+}
+
+h6 {
+  font-size: var(--text-xl); /* 20px */
+  font-weight: var(--weight-semibold);
+  font-style: normal;
+  line-height: var(--leading-snug);
+}
+
+p {
+  /* margin-bottom: var(--spacing-4); */
+  color: var(--text-secondary);
+}
+
+/* Elms Sans (Body & UI Text) */
+.p1 {
+  font-size: var(--text-10xl); /* 32px */
+  font-weight: var(--weight-regular);
+  line-height: var(--leading-extra-loose); /* 36px */
+}
+
+.p2 {
+  font-size: var(--text-2xl); /* 24px */
+  font-weight: var(--weight-regular);
+  line-height: var(--leading-spacious); /* 28px */
+}
+
+.sub-heading {
+  font-size: var(--text-2xl); /* 24px */
+  font-weight: var(--weight-regular);
+  line-height: var(--leading-normal); /* 24px */
+}
+
+.p5 {
+  font-size: var(--text-xl); /* 20px */
+  font-weight: var(--weight-regular);
+  line-height: var(--leading-normal); /* 24px */
+}
+
+.caption {
+  font-size: var(--text-xl); /* 20px */
+  font-weight: var(--weight-regular);
+  line-height: var(--leading-tight); /* 20px */
+}
+
+/* ==========================================================
+   [INACTIVE: 16px MAIN BODY TEXT]
+   ==========================================================
+.p3-main-body-text {
+  font-size: var(--text-base);
+  font-weight: var(--weight-regular);
+  line-height: var(--leading-tight);
+}
+========================================================== */
+
+/* ==========================================================
+   [ACTIVE: 20px MEDIUM MAIN BODY TEXT]
+   ========================================================== */
+.p3-main-body-text {
+  font-size: var(--text-xl);         /* 20px */
+  font-weight: var(--weight-medium);  /* Medium (500) */
+  line-height: var(--leading-normal); /* 24px */
+}
+
+.button-text {
+  font-size: var(--text-base); /* 16px */
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-tight); /* 20px */
+}
+
+/* Utilities */
+
+/* Size Variants */
+.text-xs { font-size: var(--text-xs); line-height: var(--leading-normal); }
+.text-sm { font-size: var(--text-sm); line-height: var(--leading-normal); }
+.text-base { font-size: var(--text-base); line-height: var(--leading-normal); }
+.text-lg { font-size: var(--text-lg); line-height: var(--leading-snug); }
+.text-xl { font-size: var(--text-xl); line-height: var(--leading-snug); }
+.text-2xl { font-size: var(--text-2xl); line-height: var(--leading-tight); }
+.text-3xl { font-size: var(--text-3xl); line-height: var(--leading-tight); }
+.text-4xl { font-size: var(--text-4xl); line-height: var(--leading-tight); }
+.text-5xl { font-size: var(--text-5xl); line-height: var(--leading-tight); }
+.text-6xl { font-size: var(--text-6xl); line-height: var(--leading-hero); }
+.text-7xl { font-size: var(--text-7xl); line-height: var(--leading-giant); }
+.text-8xl { font-size: var(--text-8xl); line-height: var(--leading-ultra-loose); }
+.text-9xl { font-size: var(--text-9xl); line-height: var(--leading-super-loose); }
+.text-10xl { font-size: var(--text-10xl); line-height: var(--leading-loose); }
+
+/* Weight Variants */
+.font-thin { font-weight: var(--weight-thin); }
+.font-extralight { font-weight: var(--weight-extralight); }
+.font-light { font-weight: var(--weight-light); }
+.font-regular { font-weight: var(--weight-regular); }
+.font-medium { font-weight: var(--weight-medium); }
+.font-semibold { font-weight: var(--weight-semibold); }
+.font-bold { font-weight: var(--weight-bold); }
+.font-extrabold { font-weight: var(--weight-extrabold); }
+.font-black { font-weight: var(--weight-black); }
+
+/* Intent Variants (Colors) */
+.text-default { color: var(--text-base); }
+.text-heading { color: var(--text-heading); }
+.text-dark-body { color: var(--dark-body-text); }
+.text-primary { color: var(--text-primary); }
+.text-secondary { color: var(--text-secondary); }
+.text-muted { color: var(--text-tertiary); }
+.text-brand { color: var(--text-brand); }
+.text-error { color: var(--text-error); }
+.text-success { color: var(--text-success); }
+.text-warning { color: var(--text-warning); }
+.text-info { color: var(--text-info); }
+.text-inverse { color: var(--text-inverse); }

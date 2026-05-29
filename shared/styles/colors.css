@@ -1,0 +1,118 @@
+:root {
+  /* Neutral Color Palette */
+  --color-neutral-25: #fcfcfc;
+  --color-neutral-50: #f9fafb;
+  --color-neutral-100: #f3f4f6;
+  --color-neutral-200: #e2e2e2; /* --stroke-color */
+  --color-neutral-300: #d1d5db;
+  --color-neutral-400: #9ca3af;
+  --color-neutral-500: #6b7280;
+  --color-neutral-600: #4b5563;
+  --color-neutral-700: #374151;
+  --color-neutral-800: #1f2937;
+  --color-neutral-900: #111827;
+  --color-neutral-950: #030712;
+
+  /* Project Base Aliases (unmapped) */
+  --dark-body-text: #474747;
+  --dark-text-heading: #00040c;
+
+  /* Primary Brand - Orange */
+  --color-primary-25: #fff5ef; /* --light-orange-background */
+  --color-primary-50: #fdf1ef;
+  --color-primary-100: #fbe3df;
+  --color-primary-200: #f6c3ba;
+  --color-primary-300: #f3a596;
+  --color-primary-400: #f18164;
+  --color-primary-500: #e0663d; /* --takeout-media-orange */
+  --color-primary-600: #b24f2e;
+  --color-primary-700: #883b21;
+  --color-primary-800: #5d2614;
+  --color-primary-900: #391508;
+  --color-primary-950: #260b04;
+
+  /* Secondary Brand - Blue */
+  --color-secondary-25: #d8e6ff;
+  --color-secondary-50: #d8e6ff;
+  --color-secondary-100: #b4d0ff;
+  --color-secondary-200: #3ea2ff;
+  --color-secondary-300: #0076c3; /* --light-gradient-blue */
+  --color-secondary-400: #00497d;
+  --color-secondary-500: #002340; /* --tm-dark-blue */
+  --color-secondary-600: #001d36;
+  --color-secondary-700: #00192f;
+  --color-secondary-800: #001224;
+  --color-secondary-900: #000c1b;
+  --color-secondary-950: #00040c;
+
+  /* Tertiary Brand - Pink */
+  --color-tertiary-25: #fcedf2;
+  --color-tertiary-50: #fcedf2;
+  --color-tertiary-100: #fad7e2;
+  --color-tertiary-200: #f5b0ca;
+  --color-tertiary-300: #f182b0;
+  --color-tertiary-400: #ee4e9a;
+  --color-tertiary-500: #ca327e; /* --tm-pink */
+  --color-tertiary-600: #a32664;
+  --color-tertiary-700: #7b1b4b;
+  --color-tertiary-800: #591035;
+  --color-tertiary-900: #35061e;
+  --color-tertiary-950: #270414;
+
+  /* Semantic - Success (Green) */
+  --color-success-50: #f0fdf4;
+  --color-success-100: #dcfce7;
+  --color-success-200: #bbf7d0;
+  --color-success-300: #86efac;
+  --color-success-400: #4ade80;
+  --color-success-500: #22c55e;
+  --color-success-600: #16a34a;
+  --color-success-700: #15803d;
+  --color-success-800: #166534;
+  --color-success-900: #14532d;
+  --color-success-950: #052e16;
+
+  /* Semantic - Warning (Amber) */
+  --color-warning-50: #fffbeb;
+  --color-warning-100: #fef3c7;
+  --color-warning-200: #fde68a;
+  --color-warning-300: #fcd34d;
+  --color-warning-400: #fbbf24;
+  --color-warning-500: #f59e0b;
+  --color-warning-600: #d97706;
+  --color-warning-700: #b45309;
+  --color-warning-800: #92400e;
+  --color-warning-900: #78350f;
+  --color-warning-950: #451a03;
+
+  /* Semantic - Error (Red) */
+  --color-error-50: #fef2f2;
+  --color-error-100: #fee2e2;
+  --color-error-200: #fecaca;
+  --color-error-300: #fca5a5;
+  --color-error-400: #f87171;
+  --color-error-500: #ef4444;
+  --color-error-600: #dc2626;
+  --color-error-700: #b91c1c;
+  --color-error-800: #991b1b;
+  --color-error-900: #7f1d1d;
+  --color-error-950: #450a0a;
+
+  /* Semantic - Info (Blue) */
+  --color-info-50: #d8e6ff;
+  --color-info-100: #b4d0ff;
+  --color-info-200: #3ea2ff;
+  --color-info-300: #0076c3;
+  --color-info-400: #00497d;
+  --color-info-500: #002340;
+  --color-info-600: #001d36;
+  --color-info-700: #00192f;
+  --color-info-800: #001224;
+  --color-info-900: #000c1b;
+  --color-info-950: #00040c;
+
+  /* Base */
+  --color-white: #ffffff; /* --white */
+  --color-black: #000000; /* --black */
+  --color-transparent: transparent;
+}
