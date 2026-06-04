@@ -13,24 +13,24 @@ import { PlanetarySlice, SplitText } from '@/shared/components/ui';
  * Reused from the homepage to maintain visual consistency,
  * allowing for specific tweaks for the 'Our Works' narrative.
  */
+const WORKS_HERO_IMAGES = [
+	'/pictures/hero-images/01-tokubo.webp',
+	'/pictures/hero-images/02-tokunbo.webp',
+	'/pictures/hero-images/03-riple.webp',
+	'/pictures/hero-images/04-riple-.webp',
+	'/pictures/hero-images/05-surwash.webp',
+	'/pictures/hero-images/06-totalenergies.webp',
+	'/pictures/hero-images/07-ripple.webp',
+	'/pictures/hero-images/08-surwash.webp',
+	'/pictures/hero-images/09-nis.webp',
+	'/pictures/hero-images/10-nis-entrance.webp',
+	'/pictures/hero-images/11-nis-governor-entrance.webp',
+];
+
 export function Hero() {
 	 const containerRef = useRef<HTMLDivElement>(null);
 	 const headingRef = useRef<HTMLHeadingElement>(null);
 	 const arrowRef = useRef<HTMLDivElement>(null);
-
-	 const images = [
-		'/pictures/nis/stage.jpg',
-		'/pictures/surwash/pamphlet.png',
-		'/pictures/delight-finance/billboard.png',
-		'/pictures/nis/booth-passage.jpg',
-		'/pictures/ripple/city-billboard-mockup.png',
-		'/pictures/ripple/free-banner-mockup2.png',
-		'/pictures/ripple/po2.png',
-		'/pictures/tokunbo/artboard1-large.jpeg',
-		'/pictures/tokunbo/group-1.png',
-		'/pictures/tokunbo/vertical-billboard.png',
-		'/pictures/total/te-vals-day-poster-01.png',
-	 ];
 
 	 useGSAP(() => {
 		 // Gentle bobbing animation for the arrow
@@ -75,7 +75,7 @@ export function Hero() {
 	 return (
 		 <section ref={containerRef} className="relative w-full min-h-[100vh] bg-secondary-500 overflow-hidden">
 			 {/* WebGL Planetary Slice Animation */}
-			 <PlanetarySlice images={images} />
+			 <PlanetarySlice images={WORKS_HERO_IMAGES} />
 			 {/* Gradient Overlay */}
 			 <div className="absolute inset-0 gradient-overlay-dark" aria-hidden="true" />
 

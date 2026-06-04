@@ -44,21 +44,21 @@ import { useGSAP } from '@gsap/react';
 import SplitType from 'split-type';
 import { PlanetarySlice, SplitText } from '@/shared/components/ui';
 
-export function Hero() {
-	const images = [
-		'/pictures/nis/stage.jpg',
-		'/pictures/surwash/pamphlet.png',
-		'/pictures/delight-finance/billboard.png',
-		'/pictures/nis/booth-passage.jpg',
-		'/pictures/ripple/city-billboard-mockup.png',
-		'/pictures/ripple/free-banner-mockup2.png',
-		'/pictures/ripple/po2.png',
-		'/pictures/tokunbo/artboard1-large.jpeg',
-		'/pictures/tokunbo/group-1.png',
-		'/pictures/tokunbo/vertical-billboard.png',
-		'/pictures/total/te-vals-day-poster-01.png',
-	];
+const HERO_IMAGES = [
+	'/pictures/hero-images/01-tokubo.webp',
+	'/pictures/hero-images/02-tokunbo.webp',
+	'/pictures/hero-images/03-riple.webp',
+	'/pictures/hero-images/04-riple-.webp',
+	'/pictures/hero-images/05-surwash.webp',
+	'/pictures/hero-images/06-totalenergies.webp',
+	'/pictures/hero-images/07-ripple.webp',
+	'/pictures/hero-images/08-surwash.webp',
+	'/pictures/hero-images/09-nis.webp',
+	'/pictures/hero-images/10-nis-entrance.webp',
+	'/pictures/hero-images/11-nis-governor-entrance.webp',
+];
 
+export function Hero() {
 	const containerRef = useRef<HTMLDivElement>(null);
 	const headingRef = useRef<HTMLHeadingElement>(null);
 
@@ -143,7 +143,7 @@ export function Hero() {
 	return (
 		<section ref={containerRef} className="relative w-full min-h-[100vh] bg-secondary-500 overflow-hidden">
 			{/* WebGL Planetary Slice Animation */}
-			<PlanetarySlice images={images} />
+			<PlanetarySlice images={HERO_IMAGES} />
 			{/* Gradient Overlay */}
 			<div className="absolute inset-0 gradient-overlay-dark" aria-hidden="true" />
 
@@ -153,14 +153,19 @@ export function Hero() {
 					{/* Heading - Manual GSAP + Scramble */}
 					<h1
 						ref={headingRef}
-						className="h1-desktop text-[length:var(--text-8xl)] leading-[length:var(--leading-ultra-loose)] md:text-[length:var(--text-7xl)] md:leading-[length:var(--leading-giant)] text-inverse max-w-[1000px] opacity-0 !normal-case m-0"
+						className="h1-desktop !text-[2.65rem] !leading-[1.15] md:!text-[length:var(--text-7xl)] md:!leading-[length:var(--leading-giant)] text-inverse max-w-[1000px] opacity-0 !normal-case m-0"
 					>
-						We&apos;ll Help You <span className="scramble-word text-brand inline-block w-[12rem] lg:w-[22rem] transition-none text-left">Outthink,</span>
+						{/* Line 1 */}
+						<span className="block">We&apos;ll Help You</span>
+						{/* Line 2 – scramble word */}
+						<span className="scramble-word text-brand inline-block w-[8rem] md:w-[12rem] lg:w-[22rem] transition-none text-left">Outthink,</span>
+						{/* Line 3 */}
 						<span className="block">The Competition.</span>
 					</h1>
 
 					{/* Description Block - Using new reusable component */}
 					<div className="flex flex-col gap-[var(--spacing-4)] md:gap-[var(--spacing-4)] lg:gap-[var(--spacing-6)] w-full md:w-[380px] lg:w-[484px] flex-shrink-0 md:mt-4">
+						{/* Paragraph 1 – shown on all screen sizes */}
 						<SplitText
 							variant="fade"
 							type="words"
@@ -170,15 +175,18 @@ export function Hero() {
 						>
 							At Takeout Media, we are relentlessly effective problem-solvers who help ambitious brands outthink, outpace, and outlast their competition. In the industry, we are known to be ruthlessly effective and ridiculously creative.
 						</SplitText>
-						<SplitText
-							variant="fade"
-							type="words"
-							delay={1.0}
-							threshold={1}
-							className="p3-main-body-text text-inverse mb-0"
-						>
-							But for the sake of conversation, you can call us a technology driven full-service communications and advertising company.
-						</SplitText>
+						{/* Paragraph 2 – hidden on mobile, visible md+ */}
+						<div className="hidden md:block">
+							<SplitText
+								variant="fade"
+								type="words"
+								delay={1.0}
+								threshold={1}
+								className="p3-main-body-text text-inverse mb-0"
+							>
+								But for the sake of conversation, you can call us a technology driven full-service communications and advertising company.
+							</SplitText>
+						</div>
 					</div>
 				</div>
 			</div>

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowCircleRight, InstagramLogo, TiktokLogo, XLogo, LinkedinLogo } from "@phosphor-icons/react";
+import { ArrowCircleRight, InstagramLogo, FacebookLogo, YoutubeLogo, LinkedinLogo } from "@phosphor-icons/react";
 
 export function Footer() {
     return (
@@ -18,7 +18,7 @@ export function Footer() {
                     {/* A. Top Shelf: Logos Only */}
                     <div className="flex flex-row items-center gap-[var(--spacing-6)] lg:gap-[var(--spacing-8)] w-full">
                         <Image
-                            src="/pictures/logos/takeout-media-logo-white.svg"
+                            src="/pictures/logos/takeout-media-white-logo.png"
                             alt="Takeout Media Logo"
                             width={200}
                             height={80}
@@ -112,19 +112,25 @@ export function Footer() {
                                 info@takeoutmedia.xyz
                             </p>
 
-                            {/* Social Icons */}
-                            <div className="flex items-center gap-[var(--spacing-5)] lg:gap-[var(--spacing-6)] mt-[var(--spacing-2)]">
-                                {[
-                                    InstagramLogo,
-                                    TiktokLogo,
-                                    XLogo,
-                                    LinkedinLogo
-                                ].map((Icon, idx) => (
-                                    <a key={idx} href="#" className="text-inverse hover:opacity-80 transition-opacity">
-                                        <Icon size={28} className="lg:w-[28px] lg:h-[28px]" />
-                                    </a>
-                                ))}
-                            </div>
+                             {/* Social Icons */}
+                             <div className="flex items-center gap-[var(--spacing-5)] lg:gap-[var(--spacing-6)] mt-[var(--spacing-2)]">
+                                 {[
+                                     { Icon: InstagramLogo, href: "https://www.instagram.com/takeout.media/" },
+                                     { Icon: FacebookLogo, href: "https://www.facebook.com/takeoutmediaagency" },
+                                     { Icon: YoutubeLogo, href: "https://www.youtube.com/c/TakeoutMediaStudios" },
+                                     { Icon: LinkedinLogo, href: "https://www.linkedin.com/company/takeout-media/" }
+                                 ].map(({ Icon, href }, idx) => (
+                                     <a 
+                                         key={idx} 
+                                         href={href} 
+                                         target="_blank" 
+                                         rel="noopener noreferrer" 
+                                         className="text-inverse hover:opacity-80 transition-opacity"
+                                     >
+                                         <Icon size={28} className="lg:w-[28px] lg:h-[28px]" />
+                                     </a>
+                                 ))}
+                             </div>
                         </div>
 
                     </div>

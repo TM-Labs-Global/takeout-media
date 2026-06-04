@@ -30,12 +30,10 @@ export const metadata: Metadata = {
   description: "We are a technology driven full-service communications and advertising company.",
   icons: {
     icon: [
-      { url: "/pictures/takeout-media-logomark/logomark-color.svg", type: "image/svg+xml" },
-      { url: "/pictures/takeout-media-logomark/logomark-color.png", type: "image/png" },
-      { url: "/pictures/takeout-media-logomark/logomark-color.ico", type: "image/x-icon" },
+      { url: "/pictures/takeout-media-logomark/favicon.png", type: "image/png" },
     ],
     apple: [
-      { url: "/pictures/takeout-media-logomark/logomark-color.png" },
+      { url: "/pictures/takeout-media-logomark/favicon.png" },
     ],
   },
 };
@@ -63,10 +61,8 @@ export default function RootLayout({
           rel="stylesheet"
         />
         {/* Search-engine-compliant multi-format favicon fallbacks */}
-        <link rel="icon" href="/pictures/takeout-media-logomark/logomark-color.svg" type="image/svg+xml" />
-        <link rel="icon" href="/pictures/takeout-media-logomark/logomark-color.png" type="image/png" sizes="512x512" />
-        <link rel="shortcut icon" href="/pictures/takeout-media-logomark/logomark-color.ico" />
-        <link rel="apple-touch-icon" href="/pictures/takeout-media-logomark/logomark-color.png" />
+        <link rel="icon" href="/pictures/takeout-media-logomark/favicon.png" type="image/png" sizes="32x32" />
+        <link rel="apple-touch-icon" href="/pictures/takeout-media-logomark/favicon.png" />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${playfairDisplay.variable} ${bricolageGrotesque.variable} antialiased flex flex-col min-h-screen`}

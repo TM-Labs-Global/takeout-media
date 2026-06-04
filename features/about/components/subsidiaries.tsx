@@ -10,7 +10,7 @@ import { AnimatedServiceCard, FadeIn, SplitText } from '@/shared/components/ui';
 
 gsap.registerPlugin(ScrollTrigger);
 
-// Custom Logo Component to replace generic icons
+// Custom Logo Components to replace generic icons
 const TMLabsLogo = () => (
   <div className="relative w-20 h-20">
     {/* Colored Logo */}
@@ -26,7 +26,7 @@ const TMLabsLogo = () => (
     {/* White Logo */}
     <div className="absolute inset-0 flex items-center justify-center transition-opacity duration-300 opacity-0 group-hover:opacity-100">
       <Image
-        src="/pictures/sbu-logos/white/tm-labs-logo-white.svg"
+        src="/pictures/sbu-logos/tm-labs-logo-white.svg"
         alt="TM Labs White"
         width={80}
         height={80}
@@ -51,7 +51,7 @@ const DesignTeemLogo = () => (
     {/* White Logo */}
     <div className="absolute inset-0 flex items-center justify-center transition-opacity duration-300 opacity-0 group-hover:opacity-100">
       <Image
-        src="/pictures/sbu-logos/white/design-teem.svg"
+        src="/pictures/sbu-logos/design-teem.svg"
         alt="Design Teem White"
         width={80}
         height={80}
@@ -76,8 +76,33 @@ const IngeneStudiosLogo = () => (
     {/* White Logo */}
     <div className="absolute inset-0 flex items-center justify-center transition-opacity duration-300 opacity-0 group-hover:opacity-100">
       <Image
-        src="/pictures/sbu-logos/white/ingene.svg"
+        src="/pictures/sbu-logos/ingene.svg"
         alt="Ingene Studios White"
+        width={80}
+        height={80}
+        className="object-contain"
+      />
+    </div>
+  </div>
+);
+
+const TMFoundationLogo = () => (
+  <div className="relative w-20 h-20">
+    {/* Colored Logo */}
+    <div className="absolute inset-0 flex items-center justify-center transition-opacity duration-300 opacity-100 group-hover:opacity-0">
+      <Image
+        src="/pictures/sbu-logos/tm-foundation-logo.png"
+        alt="TM Foundation"
+        width={80}
+        height={80}
+        className="object-contain"
+      />
+    </div>
+    {/* White Logo (Inverted to White on Hover) */}
+    <div className="absolute inset-0 flex items-center justify-center transition-opacity duration-300 opacity-0 group-hover:opacity-100">
+      <Image
+        src="/pictures/sbu-logos/tm-foundation-logo-white.png"
+        alt="TM Foundation White"
         width={80}
         height={80}
         className="object-contain"
@@ -105,7 +130,7 @@ const SUBSIDIARY_CARDS = [
   {
     title: "TM Foundation",
     description: "Driving social impact by empowering communities and shaping Africa’s tomorrow.",
-    icon: TMLabsLogo,
+    icon: TMFoundationLogo,
   }
 ];
 

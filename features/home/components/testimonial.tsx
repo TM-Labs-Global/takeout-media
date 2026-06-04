@@ -91,7 +91,7 @@ export function Testimonial() {
   return (
     <section className="w-full bg-[var(--color-primary-25)] py-[var(--spacing-25)] lg:py-[var(--spacing-37)] overflow-hidden" data-name="Testimonial">
       {/* Header Container */}
-      <div className="w-full px-[var(--spacing-5)] lg:px-[var(--spacing-30)] mb-[160px]">
+      <div className="w-full px-[var(--spacing-5)] lg:px-[var(--spacing-30)] mb-[var(--spacing-10)] lg:mb-[var(--spacing-20)]">
         <div className="flex flex-col md:flex-row justify-between items-start gap-[var(--spacing-8)] md:gap-[var(--spacing-10)] lg:gap-[var(--spacing-15)] w-full">
           <div className="max-w-[600px]">
             <SplitText 
@@ -123,11 +123,11 @@ export function Testimonial() {
           {/* First Group */}
           <div className="flex flex-nowrap gap-[var(--spacing-8)] md:gap-[var(--spacing-15)] pr-[var(--spacing-8)] md:pr-[var(--spacing-15)] shrink-0">
             {testimonials.map((item, index) => {
-              const rotation = index % 2 === 0 ? "-rotate-[4deg]" : "rotate-[4deg]";
+              const rotation = index % 2 === 0 ? "lg:-rotate-[4deg]" : "lg:rotate-[4deg]";
               return (
                 <div 
                   key={`first-${index}`}
-                  className={`shrink-0 w-[320px] md:w-[479px] h-[380px] md:h-[450px] bg-white border border-stroke rounded-[var(--radius-2xl)] p-[var(--spacing-8)] md:p-[var(--spacing-10)] flex flex-col gap-[var(--spacing-10)] md:gap-[var(--spacing-15)] ${rotation} transition-transform duration-300 hover:rotate-0 origin-center cursor-pointer will-change-transform transform-gpu`}
+                  className={`shrink-0 w-[320px] md:w-[479px] h-auto min-h-[380px] md:min-h-[450px] bg-white border border-stroke rounded-[var(--radius-2xl)] p-[var(--spacing-8)] md:p-[var(--spacing-10)] flex flex-col gap-[var(--spacing-10)] md:gap-[var(--spacing-15)] ${rotation} transition-transform duration-300 hover:rotate-0 origin-center cursor-pointer will-change-transform transform-gpu`}
                   style={{ backfaceVisibility: "hidden" }}
                 >
                   <div className="flex flex-col gap-[var(--spacing-5)] md:gap-[var(--spacing-6)]">
@@ -165,11 +165,11 @@ export function Testimonial() {
           {/* Second Group */}
           <div className="flex flex-nowrap gap-[var(--spacing-8)] md:gap-[var(--spacing-15)] pr-[var(--spacing-8)] md:pr-[var(--spacing-15)] shrink-0" aria-hidden="true">
             {testimonials.map((item, index) => {
-              const rotation = index % 2 === 0 ? "-rotate-[4deg]" : "rotate-[4deg]";
+              const rotation = index % 2 === 0 ? "lg:-rotate-[4deg]" : "lg:rotate-[4deg]";
               return (
                 <div 
                   key={`second-${index}`}
-                  className={`shrink-0 w-[320px] md:w-[479px] h-[380px] md:h-[450px] bg-white border border-stroke rounded-[var(--radius-2xl)] p-[var(--spacing-8)] md:p-[var(--spacing-10)] flex flex-col gap-[var(--spacing-10)] md:gap-[var(--spacing-15)] ${rotation} transition-transform duration-300 hover:rotate-0 origin-center cursor-pointer will-change-transform transform-gpu`}
+                  className={`shrink-0 w-[320px] md:w-[479px] h-auto min-h-[380px] md:min-h-[450px] bg-white border border-stroke rounded-[var(--radius-2xl)] p-[var(--spacing-8)] md:p-[var(--spacing-10)] flex flex-col gap-[var(--spacing-10)] md:gap-[var(--spacing-15)] ${rotation} transition-transform duration-300 hover:rotate-0 origin-center cursor-pointer will-change-transform transform-gpu`}
                   style={{ backfaceVisibility: "hidden" }}
                 >
                   <div className="flex flex-col gap-[var(--spacing-5)] md:gap-[var(--spacing-6)]">

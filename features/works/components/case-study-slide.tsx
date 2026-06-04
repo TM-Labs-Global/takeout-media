@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useRef } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -208,69 +208,91 @@ export const CaseStudySlide: React.FC = () => {
   const slidesRef = useRef<(HTMLDivElement | null)[]>([]);
   const innerRef = useRef<(HTMLDivElement | null)[]>([]);
   const contentRef = useRef<(HTMLDivElement | null)[]>([]);
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    const checkDesktop = () => {
+      setIsDesktop(window.innerWidth >= 1024);
+    };
+    checkDesktop();
+    window.addEventListener('resize', checkDesktop);
+    return () => window.removeEventListener('resize', checkDesktop);
+  }, []);
 
   useGSAP(() => {
-    const totalSlides = slides.length;
-    
-    // Prepare the stack
-    slidesRef.current.forEach((slide, i) => {
-      if (i === 0) return;
-      gsap.set(slide, { yPercent: 100 });
-      gsap.set(innerRef.current[i], { yPercent: -40 });
-      gsap.set(contentRef.current[i], { autoAlpha: 0, y: 50 });
-    });
+    const mm = gsap.matchMedia();
 
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: rootRef.current,
-        start: 'top 80px',
-        end: 'bottom bottom',
-        scrub: 1,
+    mm.add("(min-width: 1024px)", () => {
+      const totalSlides = slides.length;
+      
+      // Prepare the stack
+      slidesRef.current.forEach((slide, i) => {
+        if (!slide) return;
+        if (i === 0) return;
+        gsap.set(slide, { yPercent: 100 });
+        gsap.set(innerRef.current[i], { yPercent: -40 });
+        gsap.set(contentRef.current[i], { autoAlpha: 0, y: 50 });
+      });
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: rootRef.current,
+          start: 'top 80px',
+          end: 'bottom bottom',
+          scrub: 1,
+        }
+      });
+
+      for (let i = 0; i < totalSlides - 1; i++) {
+        const currentSlide = slidesRef.current[i];
+        const nextSlide = slidesRef.current[i + 1];
+        const nextInner = innerRef.current[i + 1];
+        const currentContent = contentRef.current[i];
+        const nextContent = contentRef.current[i + 1];
+
+        tl.to(currentSlide, {
+          autoAlpha: 0,
+          scale: 0.9,
+          duration: 1,
+          ease: 'power2.inOut'
+        }, i)
+        .to(nextSlide, {
+          yPercent: 0,
+          duration: 1,
+          ease: 'none'
+        }, i)
+        .to(nextInner, {
+          yPercent: 0,
+          duration: 1,
+          ease: 'none'
+        }, i)
+        .to(currentContent, {
+          autoAlpha: 0,
+          y: -50,
+          duration: 0.5
+        }, i)
+        .to(nextContent, {
+          autoAlpha: 1,
+          y: 0,
+          duration: 0.6
+        }, i + 0.4);
       }
     });
 
-    for (let i = 0; i < totalSlides - 1; i++) {
-      const currentSlide = slidesRef.current[i];
-      const nextSlide = slidesRef.current[i + 1];
-      const nextInner = innerRef.current[i + 1];
-      const currentContent = contentRef.current[i];
-      const nextContent = contentRef.current[i + 1];
-
-      tl.to(currentSlide, {
-        autoAlpha: 0,
-        scale: 0.9,
-        duration: 1,
-        ease: 'power2.inOut'
-      }, i)
-      .to(nextSlide, {
-        yPercent: 0,
-        duration: 1,
-        ease: 'none'
-      }, i)
-      .to(nextInner, {
-        yPercent: 0,
-        duration: 1,
-        ease: 'none'
-      }, i)
-      .to(currentContent, {
-        autoAlpha: 0,
-        y: -50,
-        duration: 0.5
-      }, i)
-      .to(nextContent, {
-        autoAlpha: 1,
-        y: 0,
-        duration: 0.6
-      }, i + 0.4);
-    }
-
+    return () => {
+      mm.revert();
+    };
   }, { scope: rootRef });
 
   return (
-    <div ref={rootRef} className="relative w-full" style={{ height: `${slides.length * 100}vh` }}>
-      {/* Sticky Container */}
+    <div 
+      ref={rootRef} 
+      className="relative w-full" 
+      style={{ height: isDesktop ? `${slides.length * 100}vh` : 'auto' }}
+    >
+      {/* Desktop/Laptop Version: GSAP Vertical Parallax Slide Stack */}
       <div 
-        className="sticky top-[80px] w-full h-[calc(100vh-80px)] overflow-hidden bg-black"
+        className="hidden lg:block sticky top-[80px] w-full h-[calc(100vh-80px)] overflow-hidden bg-black"
       >
         {slides.map((slide, index) => (
           <div
@@ -288,26 +310,25 @@ export const CaseStudySlide: React.FC = () => {
               <div className="absolute inset-0 bg-black/60" />
             </div>
 
-            {/* FULL DETAILED CONTENT (The Template Port) */}
+            {/* FULL DETAILED CONTENT */}
             <div 
                ref={(el) => { contentRef.current[index] = el; }}
-               className="relative z-10 w-full h-full px-[var(--spacing-5)] py-[var(--spacing-16)] lg:px-[var(--spacing-30)] lg:py-[var(--spacing-25)] flex flex-col justify-center"
+               className="relative z-10 w-full h-full px-[var(--spacing-30)] py-[var(--spacing-25)] flex flex-col justify-center"
             >
-                {/* ── Top section: 2 columns ── */}
-                <div className="flex flex-col lg:flex-row lg:justify-between gap-[var(--spacing-10)] lg:gap-[var(--spacing-8)] pb-[var(--spacing-14)] lg:pb-0 border-b border-white/10 lg:border-none">
-                  
+                {/* Top section: 2 columns */}
+                <div className="flex flex-row justify-between gap-[var(--spacing-8)]">
                   {/* Left: client name + subtitle */}
-                  <div className="flex flex-col gap-[var(--spacing-8)] lg:max-w-[400px]">
-                    <h1 className="text-8xl font-display italic text-inverse leading-none max-w-[300px]">
+                  <div className="flex flex-col gap-[var(--spacing-8)] max-w-[400px]">
+                    <h1 className="text-8xl font-display italic text-inverse max-w-[300px]" style={{ lineHeight: 1.1 }}>
                       {slide.client}
                     </h1>
-                    <p className="text-lg lg:text-xl leading-snug text-inverse font-bold">
+                    <p className="text-xl leading-snug text-inverse font-bold">
                       {slide.subtitle}
                     </p>
                   </div>
 
                   {/* Right: description + CTA */}
-                  <div className="flex flex-col gap-[var(--spacing-8)] lg:max-w-[400px]">
+                  <div className="flex flex-col gap-[var(--spacing-8)] max-w-[400px]">
                     <RenderSubtext content={slide.description} />
                     <Button variant="primary" size="lg" as="link" href={slide.linkUrl || "#"} className="self-start">
                       Download Case Study
@@ -315,63 +336,163 @@ export const CaseStudySlide: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Spacer for desktop */}
-                <div className="hidden lg:block h-[var(--spacing-20)]" />
+                {/* Spacer */}
+                <div className="h-[var(--spacing-20)]" />
 
-                {/* ── Bottom section: Multi-row Grid ── */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-[var(--spacing-8)] gap-y-[var(--spacing-16)]">
+                {/* Bottom section: Multi-row Grid */}
+                <div className="grid grid-cols-3 gap-x-[var(--spacing-8)] gap-y-[var(--spacing-16)]">
                   {(slide.santi && slide.cookWithMe) ? (
                     <>
                       {/* Row 1 */}
-                      <div className="flex flex-col gap-[var(--spacing-8)] lg:max-w-[400px] lg:justify-self-start">
+                      <div className="flex flex-col gap-[var(--spacing-8)] max-w-[400px] justify-self-start">
                         <p className="sub-heading font-display uppercase font-bold text-inverse">The Challenge</p>
                         <RenderSubtext content={slide.challenge} />
                       </div>
 
-                      <div className="flex flex-col gap-[var(--spacing-8)] lg:max-w-[400px] lg:justify-self-center">
+                      <div className="flex flex-col gap-[var(--spacing-8)] max-w-[400px] justify-self-center">
                         <p className="sub-heading font-display uppercase font-bold text-inverse">What's Your Santi</p>
                         <RenderSubtext content={slide.santi} />
                       </div>
 
-                      <div className="flex flex-col gap-[var(--spacing-8)] lg:max-w-[400px] lg:justify-self-end">
+                      <div className="flex flex-col gap-[var(--spacing-8)] max-w-[400px] justify-self-end">
                         <p className="sub-heading font-display uppercase font-bold text-inverse">Key Results</p>
                         <RenderSubtext content={slide.results} treatStringArrayAsList />
                       </div>
 
                       {/* Row 2 */}
-                      <div className="flex flex-col gap-[var(--spacing-8)] lg:max-w-[400px] lg:justify-self-start">
+                      <div className="flex flex-col gap-[var(--spacing-8)] max-w-[400px] justify-self-start">
                         <p className="sub-heading font-display uppercase font-bold text-inverse">The Solution</p>
                         <RenderSubtext content={slide.solution} />
                       </div>
 
-                      <div className="flex flex-col gap-[var(--spacing-8)] lg:max-w-[400px] lg:justify-self-center">
+                      <div className="flex flex-col gap-[var(--spacing-8)] max-w-[400px] justify-self-center">
                         <p className="sub-heading font-display uppercase font-bold text-inverse">Cook With Me</p>
                         <RenderSubtext content={slide.cookWithMe} />
                       </div>
 
-                      {/* Row 2, Column 3: Pre-Styled for Future Content */}
-                      <div aria-hidden="true" className="flex flex-col gap-[var(--spacing-8)] lg:max-w-[400px] lg:justify-self-end" />
+                      <div aria-hidden="true" className="flex flex-col gap-[var(--spacing-8)] max-w-[400px] justify-self-end" />
                     </>
                   ) : (
                     <>
                       {/* Row 1 - 3 Column Layout */}
-                      <div className="flex flex-col gap-[var(--spacing-8)] lg:max-w-[400px] lg:justify-self-start">
+                      <div className="flex flex-col gap-[var(--spacing-8)] max-w-[400px] justify-self-start">
                         <p className="sub-heading font-display uppercase font-bold text-inverse">The Challenge</p>
                         <RenderSubtext content={slide.challenge} />
                       </div>
 
-                      <div className="flex flex-col gap-[var(--spacing-8)] lg:max-w-[400px] lg:justify-self-center">
+                      <div className="flex flex-col gap-[var(--spacing-8)] max-w-[400px] justify-self-center">
                         <p className="sub-heading font-display uppercase font-bold text-inverse">The Solution</p>
                         <RenderSubtext content={slide.solution} />
                       </div>
 
-                      <div className="flex flex-col gap-[var(--spacing-8)] lg:max-w-[400px] lg:justify-self-end">
+                      <div className="flex flex-col gap-[var(--spacing-8)] max-w-[400px] justify-self-end">
                         <p className="sub-heading font-display uppercase font-bold text-inverse">Key Results</p>
                         <RenderSubtext content={slide.results} treatStringArrayAsList />
                       </div>
                     </>
                   )}
                 </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Mobile/Tablet Version: Natural Scroll List */}
+      <div className="lg:hidden w-full bg-black text-white py-[var(--spacing-15)] px-[var(--spacing-5)] flex flex-col gap-[var(--spacing-16)]">
+        {slides.map((slide) => (
+          <div 
+            key={slide.id}
+            className="flex flex-col gap-[var(--spacing-6)] border-b border-white/10 pb-[var(--spacing-12)] last:border-none last:pb-0"
+          >
+            {/* Top: Client Name & Subtitle */}
+            <div className="flex flex-col gap-[var(--spacing-3)]">
+              <h2 className="text-5xl sm:text-6xl font-display italic text-inverse" style={{ lineHeight: 1.1 }}>
+                {slide.client}
+              </h2>
+              <p className="text-base sm:text-lg leading-snug text-[var(--color-primary-500)] font-bold">
+                {slide.subtitle}
+              </p>
+            </div>
+
+            {/* Middle: Static Image Cover */}
+            <div 
+              className="w-full h-[240px] sm:h-[360px] md:h-[450px] rounded-[var(--radius-2xl)] bg-cover bg-center shadow-lg relative overflow-hidden"
+              style={{ backgroundImage: `url(${slide.image})` }}
+            >
+              <div className="absolute inset-0 bg-black/40" />
+            </div>
+
+            {/* Bottom: Description & CTA */}
+            <div className="flex flex-col gap-[var(--spacing-5)]">
+              <div className="text-sm sm:text-base opacity-90 leading-relaxed">
+                <RenderSubtext content={slide.description} />
+              </div>
+              <Button 
+                variant="primary" 
+                size="md" 
+                as="link" 
+                href={slide.linkUrl || "#"} 
+                className="self-start"
+              >
+                Download Case Study
+              </Button>
+            </div>
+
+            {/* Detailed Grid: Challenge, Solution, Key Results */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-[var(--spacing-6)] mt-[var(--spacing-4)]">
+              {/* Challenge */}
+              <div className="flex flex-col gap-[var(--spacing-3)] bg-white/5 border border-white/10 p-[var(--spacing-5)] rounded-[var(--radius-xl)]">
+                <p className="font-display uppercase font-bold text-xs tracking-widest text-[var(--color-primary-400)]">
+                  The Challenge
+                </p>
+                <div className="text-sm opacity-90 leading-relaxed">
+                  <RenderSubtext content={slide.challenge} />
+                </div>
+              </div>
+
+              {/* Solution */}
+              <div className="flex flex-col gap-[var(--spacing-3)] bg-white/5 border border-white/10 p-[var(--spacing-5)] rounded-[var(--radius-xl)]">
+                <p className="font-display uppercase font-bold text-xs tracking-widest text-[var(--color-primary-400)]">
+                  The Solution
+                </p>
+                <div className="text-sm opacity-90 leading-relaxed">
+                  <RenderSubtext content={slide.solution} />
+                </div>
+              </div>
+
+              {/* Santi (If exists) */}
+              {slide.santi && (
+                <div className="flex flex-col gap-[var(--spacing-3)] bg-white/5 border border-white/10 p-[var(--spacing-5)] rounded-[var(--radius-xl)]">
+                  <p className="font-display uppercase font-bold text-xs tracking-widest text-[var(--color-primary-400)]">
+                    What's Your Santi
+                  </p>
+                  <div className="text-sm opacity-90 leading-relaxed">
+                    <RenderSubtext content={slide.santi} />
+                  </div>
+                </div>
+              )}
+
+              {/* Cook With Me (If exists) */}
+              {slide.cookWithMe && (
+                <div className="flex flex-col gap-[var(--spacing-3)] bg-white/5 border border-white/10 p-[var(--spacing-5)] rounded-[var(--radius-xl)]">
+                  <p className="font-display uppercase font-bold text-xs tracking-widest text-[var(--color-primary-400)]">
+                    Cook With Me
+                  </p>
+                  <div className="text-sm opacity-90 leading-relaxed">
+                    <RenderSubtext content={slide.cookWithMe} />
+                  </div>
+                </div>
+              )}
+
+              {/* Key Results */}
+              <div className="flex flex-col gap-[var(--spacing-3)] bg-white/5 border border-white/10 p-[var(--spacing-5)] rounded-[var(--radius-xl)] md:col-span-2">
+                <p className="font-display uppercase font-bold text-xs tracking-widest text-[var(--color-primary-400)]">
+                  Key Results
+                </p>
+                <div className="text-sm opacity-90 leading-relaxed">
+                  <RenderSubtext content={slide.results} treatStringArrayAsList />
+                </div>
+              </div>
             </div>
           </div>
         ))}

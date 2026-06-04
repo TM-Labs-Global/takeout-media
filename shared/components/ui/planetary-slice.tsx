@@ -20,7 +20,8 @@ const fragmentShader = `
   uniform float intensity;
   uniform sampler2D texture1;
   uniform sampler2D texture2;
-  uniform vec4 resolution;
+  uniform vec4 resolution1;
+  uniform vec4 resolution2;
   varying vec2 vUv;
   
   mat2 rotate(float a) {
@@ -30,11 +31,14 @@ const fragmentShader = `
   }
   
   void main() {
-    vec2 newUV = (vUv - vec2(0.5)) * resolution.zw + vec2(0.5);
-    vec2 uvDivided = fract(newUV * vec2(intensity, 1.));
+    vec2 newUV1 = (vUv - vec2(0.5)) * resolution1.zw + vec2(0.5);
+    vec2 newUV2 = (vUv - vec2(0.5)) * resolution2.zw + vec2(0.5);
     
-    vec2 uvDisplaced1 = newUV + rotate(3.1415926 / 4.) * uvDivided * progress * 0.1;
-    vec2 uvDisplaced2 = newUV + rotate(3.1415926 / 4.) * uvDivided * (1. - progress) * 0.1;
+    vec2 uvDivided1 = fract(newUV1 * vec2(intensity, 1.));
+    vec2 uvDivided2 = fract(newUV2 * vec2(intensity, 1.));
+    
+    vec2 uvDisplaced1 = newUV1 + rotate(3.1415926 / 4.) * uvDivided1 * progress * 0.1;
+    vec2 uvDisplaced2 = newUV2 + rotate(3.1415926 / 4.) * uvDivided2 * (1. - progress) * 0.1;
     
     vec4 t1 = texture2D(texture1, uvDisplaced1);
     vec4 t2 = texture2D(texture2, uvDisplaced2);
@@ -65,40 +69,65 @@ function ImagePlane({
   const [isAnimating, setIsAnimating] = useState(false);
   const { size, viewport } = useThree();
 
-  // Load textures
+  // Load textures and manage cleanup to prevent GPU memory leaks
   useEffect(() => {
     const loader = new THREE.TextureLoader();
+    let isMounted = true;
+    const loadedList: THREE.Texture[] = [];
+
     const promises = images.map((url) =>
       new Promise<THREE.Texture>((resolve) => {
-        loader.load(url, (texture) => resolve(texture));
+        loader.load(url, (texture) => {
+          loadedList.push(texture);
+          resolve(texture);
+        });
       })
     );
 
     Promise.all(promises).then((loadedTextures) => {
-      setTextures(loadedTextures);
-    });
-  }, [images]);
-
-  // Handle resize and aspect ratio
-  useFrame(() => {
-    if (materialRef.current && textures.length > 0 && textures[0].image) {
-      const img = textures[0].image as HTMLImageElement | undefined;
-      if (!img) return;
-      const imageAspect = img.height / img.width;
-      let a1, a2;
-
-      if (size.height / size.width > imageAspect) {
-        a1 = (size.width / size.height) * imageAspect;
-        a2 = 1;
+      if (isMounted) {
+        setTextures(loadedTextures);
       } else {
-        a1 = 1;
-        a2 = (size.height / size.width) / imageAspect;
+        loadedTextures.forEach(t => t.dispose());
       }
+    });
 
-      materialRef.current.uniforms.resolution.value.x = size.width;
-      materialRef.current.uniforms.resolution.value.y = size.height;
-      materialRef.current.uniforms.resolution.value.z = a1;
-      materialRef.current.uniforms.resolution.value.w = a2;
+    return () => {
+      isMounted = false;
+      loadedList.forEach(t => t.dispose());
+    };
+  }, [images.join(',')]); // Use serialized string dependency to prevent reload loop on new array references
+
+  const getResolutionVector = (texture: THREE.Texture, width: number, height: number) => {
+    if (!texture || !texture.image) return [1, 1];
+    const img = texture.image as HTMLImageElement;
+    const imageAspect = img.height / img.width;
+    let a1 = 1;
+    let a2 = 1;
+
+    if (height / width > imageAspect) {
+      a1 = (width / height) * imageAspect;
+      a2 = 1;
+    } else {
+      a1 = 1;
+      a2 = (height / width) / imageAspect;
+    }
+    return [a1, a2];
+  };
+
+  // Handle aspect ratio updates and resolution uniforms inside useFrame render loop
+  // to ensure WebGL context correctly updates right before canvas rendering.
+  useFrame(() => {
+    if (materialRef.current && textures.length > 0) {
+      const tex1 = textures[currentImage];
+      const tex2 = textures[(currentImage + 1) % textures.length];
+      if (tex1 && tex2) {
+        const [a1_1, a2_1] = getResolutionVector(tex1, size.width, size.height);
+        const [a1_2, a2_2] = getResolutionVector(tex2, size.width, size.height);
+
+        materialRef.current.uniforms.resolution1.value.set(size.width, size.height, a1_1, a2_1);
+        materialRef.current.uniforms.resolution2.value.set(size.width, size.height, a1_2, a2_2);
+      }
     }
   });
 
@@ -149,7 +178,8 @@ function ImagePlane({
           intensity: { value: intensity },
           texture1: { value: textures[currentImage] },
           texture2: { value: textures[(currentImage + 1) % textures.length] },
-          resolution: { value: new THREE.Vector4() },
+          resolution1: { value: new THREE.Vector4() },
+          resolution2: { value: new THREE.Vector4() },
         }}
         vertexShader={vertexShader}
         fragmentShader={fragmentShader}
