@@ -219,6 +219,69 @@ export const CaseStudySlide: React.FC = () => {
     return () => window.removeEventListener('resize', checkDesktop);
   }, []);
 
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const handleRouting = () => {
+      const params = new URLSearchParams(window.location.search);
+      const projectSlug = params.get('project') || window.location.hash.substring(1);
+      if (!projectSlug) return;
+
+      const cleanSlug = projectSlug.toLowerCase().trim();
+
+      const index = slides.findIndex(
+        (slide) =>
+          slide.client.toLowerCase() === cleanSlug ||
+          slide.client.toLowerCase().replace(/\s+/g, '-') === cleanSlug
+      );
+
+      if (index === -1) return;
+
+      const targetSlide = slides[index];
+      const targetSlug = targetSlide.client.toLowerCase().replace(/\s+/g, '-');
+
+      const timer = setTimeout(() => {
+        if (window.innerWidth >= 1024) {
+          const scrollTriggerInstance = ScrollTrigger.getAll().find(
+            (st) => st.trigger === rootRef.current
+          );
+          if (scrollTriggerInstance) {
+            const start = scrollTriggerInstance.start;
+            const end = scrollTriggerInstance.end;
+            const totalSlides = slides.length;
+            const targetScroll = start + (end - start) * (index / (totalSlides - 1));
+            
+            window.scrollTo({
+              top: targetScroll,
+              behavior: 'smooth',
+            });
+          }
+        } else {
+          const element = document.getElementById(targetSlug);
+          if (element) {
+            const headerOffset = 80;
+            const elementPosition = element.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.scrollY - headerOffset;
+            
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: 'smooth',
+            });
+          }
+        }
+      }, 600);
+
+      return () => clearTimeout(timer);
+    };
+
+    handleRouting();
+
+    window.addEventListener('popstate', handleRouting);
+    return () => {
+      window.removeEventListener('popstate', handleRouting);
+    };
+  }, [isDesktop]);
+
   useGSAP(() => {
     const mm = gsap.matchMedia();
 
@@ -330,7 +393,7 @@ export const CaseStudySlide: React.FC = () => {
                   {/* Right: description + CTA */}
                   <div className="flex flex-col gap-[var(--spacing-8)] max-w-[400px]">
                     <RenderSubtext content={slide.description} />
-                    <Button variant="primary" size="lg" as="link" href={slide.linkUrl || "#"} className="self-start">
+                    <Button variant="primary" size="lg" as="link" href={`mailto:info@takeoutmedia.xyz?subject=Request Case Study: ${slide.client}`} className="self-start">
                       Download Case Study
                     </Button>
                   </div>
@@ -402,6 +465,7 @@ export const CaseStudySlide: React.FC = () => {
         {slides.map((slide) => (
           <div 
             key={slide.id}
+            id={slide.client.toLowerCase().replace(/\s+/g, '-')}
             className="flex flex-col gap-[var(--spacing-6)] border-b border-white/10 pb-[var(--spacing-12)] last:border-none last:pb-0"
           >
             {/* Top: Client Name & Subtitle */}
@@ -431,7 +495,7 @@ export const CaseStudySlide: React.FC = () => {
                 variant="primary" 
                 size="md" 
                 as="link" 
-                href={slide.linkUrl || "#"} 
+                href={`mailto:info@takeoutmedia.xyz?subject=Request Case Study: ${slide.client}`} 
                 className="self-start"
               >
                 Download Case Study

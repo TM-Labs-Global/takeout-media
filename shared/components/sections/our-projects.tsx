@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useRef, useState } from 'react';
+import Link from 'next/link';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -11,37 +12,37 @@ const PROJECTS = [
     title: "SURWASH",
     description: "Empowering a WASH Revolution with SURWASH: A Data-driven Social & Behavioral Change Communication Campaign.",
     src: "/pictures/surwash/surwash-softcover.png",
-    href: "/our-works"
+    href: "/our-works?project=surwash"
   },
   {
     title: "NIS",
     description: "Reshaping the Narrative — Nigerian Immigration Service.",
     src: "/pictures/nis/stage2.jpg",
-    href: "/our-works"
+    href: "/our-works?project=nis"
   },
   {
     title: "DELIGHT FINANCE",
     description: "Building the Future of Real Estate with Delight Finance.",
     src: "/pictures/delight-finance/phone-mockup.png",
-    href: "/our-works"
+    href: "/our-works?project=delight-finance"
   },
   {
     title: "RIPPLE",
     description: "Brand Launch — Making Waves.",
     src: "/pictures/ripple/city-billboard-mockup.png",
-    href: "/our-works"
+    href: "/our-works?project=ripple"
   },
   {
     title: "TOTAL ENERGIES",
     description: "Energizing a Global Brand: TotalEnergies' Journey to Sustainability.",
     src: "/pictures/total/te-vals-day-poster-01.png",
-    href: "/our-works"
+    href: "/our-works?project=total-energies"
   },
   {
     title: "TOKUNBO",
     description: "Everything is on the line. The journey continues.",
     src: "/pictures/tokunbo/artboard1-large.jpeg",
-    href: "/our-works"
+    href: "/our-works?project=tokunbo"
   }
 ];
 
@@ -120,14 +121,14 @@ export const OurProjects: React.FC = () => {
             <p className="p3-main-body-text text-inverse max-w-md mb-8 opacity-80">
               See the results behind our reputation.
             </p>
-            <a href="/our-works" className="btn btn-outline-white w-fit">
+            <Link href="/our-works" className="btn btn-outline-white w-fit">
               View More
-            </a>
+            </Link>
           </div>
 
           {/* Project Cards */}
           {PROJECTS.map((project, i) => (
-            <a
+            <Link
               key={i}
               href={project.href}
               className="project-card group flex-shrink-0 w-full md:w-[40vw] lg:w-[34vw] mr-0 md:mr-[2vw] flex flex-col justify-start md:justify-end pb-0 md:pb-[10vh] cursor-pointer"
@@ -156,7 +157,7 @@ export const OurProjects: React.FC = () => {
                   {project.description}
                 </p>
               </div>
-            </a>
+            </Link>
           ))}
 
           {/* Trailing spacer so last card isn't flush to edge */}
