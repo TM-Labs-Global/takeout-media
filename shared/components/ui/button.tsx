@@ -26,6 +26,8 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     rounded?: boolean;
     iconOnly?: boolean;
     children?: React.ReactNode;
+    target?: string;
+    rel?: string;
 }
 
 /**

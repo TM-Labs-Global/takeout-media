@@ -17,7 +17,7 @@ export const AnimatedServiceCard = React.forwardRef<HTMLDivElement, AnimatedServ
             <HoverReveal 
                 variant="fill"
                 className={cn(
-                    "flex flex-col items-start p-[var(--spacing-8)] gap-[var(--spacing-15)] w-full h-full group",
+                    "flex flex-col items-start p-[var(--spacing-6)] md:p-[var(--spacing-8)] gap-[var(--spacing-10)] md:gap-[var(--spacing-15)] w-full h-full group",
                     className
                 )}
             >
@@ -27,12 +27,12 @@ export const AnimatedServiceCard = React.forwardRef<HTMLDivElement, AnimatedServ
                 />
                 
                 {/* Content Container - Targeted by .hover-text */}
-                <div className="relative z-10 flex flex-col gap-[var(--spacing-15)] w-full self-stretch">
+                <div className="relative z-10 flex flex-col gap-[var(--spacing-10)] md:gap-[var(--spacing-15)] w-full self-stretch">
                     <div className="flex flex-col items-start gap-[var(--spacing-5)] self-stretch">
                         <Icon className="hover-text w-[var(--spacing-8)] h-[var(--spacing-8)] flex-shrink-0 text-heading transition-colors" />
-                        <h3 className="hover-text h4-desktop text-heading transition-colors">{title}</h3>
+                        <h3 className="hover-text h4-desktop max-md:!text-[24px] text-heading transition-colors">{title}</h3>
                     </div>
-                    <p className="hover-text p3-main-body-text text-dark-body self-stretch transition-colors">
+                    <p className="hover-text p3-main-body-text !text-[length:var(--text-base)] md:!text-[length:var(--text-xl)] text-dark-body self-stretch transition-colors">
                         {description}
                     </p>
                 </div>

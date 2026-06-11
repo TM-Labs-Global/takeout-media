@@ -35,60 +35,24 @@ const CULTURE_CARDS = [
 
 export function OurCulture() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const headingRef = useRef<HTMLHeadingElement>(null);
-
-  useGSAP(() => {
-    let headSplit: SplitType | null = null;
-
-    // Heading Animation
-    if (headingRef.current) {
-      headSplit = new SplitType(headingRef.current, {
-        types: 'chars',
-        tagName: 'span'
-      });
-      const headChars = headingRef.current.querySelectorAll('.char');
-      gsap.set(headingRef.current, { opacity: 1 });
-
-      gsap.from(headChars, {
-        scrollTrigger: {
-          trigger: headingRef.current,
-          start: 'top 85%',
-          toggleActions: 'play none none none'
-        },
-        opacity: 0,
-        duration: 0.3,
-        ease: 'power1.out',
-        stagger: { amount: 0.8 },
-        delay: 0.2,
-        onComplete: () => {
-          headSplit?.revert();
-        }
-      });
-    }
-
-    return () => {
-      if (headSplit) {
-        headSplit.revert();
-      }
-    };
-  }, { scope: containerRef });
 
   return (
     <section ref={containerRef} className="bg-[var(--color-primary-25)] w-full py-[var(--spacing-15)] lg:py-[var(--spacing-25)] relative">
       <div className="w-full px-[var(--spacing-5)] md:px-[var(--spacing-30)]">
-        <div className="mb-[var(--spacing-12)] lg:mb-[var(--spacing-15)] text-center lg:text-left">
-          <h2 
-            ref={headingRef}
-            className="h2-desktop text-heading m-0 !normal-case opacity-0"
+        <div className="mb-[var(--spacing-12)] lg:mb-[var(--spacing-15)] text-left">
+          <SplitText
+            as="h2"
+            variant="slide-up"
+            className="h2-desktop max-md:!text-[length:var(--text-9xl)] max-md:!leading-[length:var(--leading-super-loose)] text-heading max-w-[320px] lg:max-w-[600px]"
           >
             Our <span className="text-[var(--color-primary-500)]">Culture</span>
-          </h2>
+          </SplitText>
           <SplitText
             variant="fade"
             type="words"
             delay={0.8}
             threshold={1}
-            className="p3-main-body-text text-dark-body mt-[var(--spacing-4)] m-0"
+            className="p3-main-body-text text-dark-body max-md:!text-[length:var(--text-base)] mt-[var(--spacing-4)] m-0"
           >
             At Takeout media we are:
           </SplitText>

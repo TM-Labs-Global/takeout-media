@@ -80,18 +80,18 @@ export function Hero() {
 			 <div className="absolute inset-0 gradient-overlay-dark" aria-hidden="true" />
 
 			 {/* Content Container - Shifted to Bottom */}
-			 <div className="relative z-10 w-full min-h-screen flex flex-col justify-end items-center px-[var(--spacing-5)] pb-[var(--spacing-15)] md:pb-[var(--spacing-20)] text-center">
-				 <div className="flex flex-col items-center gap-[var(--spacing-4)] max-w-[900px]">
+			 <div className="relative z-10 w-full min-h-screen flex flex-col justify-end items-start md:items-center px-[var(--spacing-5)] pb-[var(--spacing-15)] md:pb-[var(--spacing-20)] text-left md:text-center">
+				 <div className="flex flex-col items-start md:items-center gap-[var(--spacing-4)] max-w-[900px] w-full">
 					 {/* Heading - Serif/Italic Style */}
 					 <h1 
 						 ref={headingRef}
-						 className="font-serif italic text-[length:var(--text-8xl)] leading-[length:var(--leading-ultra-loose)] md:text-[length:var(--text-7xl)] md:leading-[length:var(--leading-giant)] text-inverse mb-0 opacity-0 !normal-case"
+						 className="font-serif italic !text-[length:var(--text-9xl)] !leading-[length:var(--leading-super-loose)] md:!text-[length:var(--text-7xl)] md:!leading-[length:var(--leading-giant)] text-inverse mb-0 opacity-0 !normal-case"
 					 >
 						 Our <span className="text-brand">Works</span>
 					 </h1>
 
 					 {/* Subtext Group */}
-					 <div className="flex flex-col items-center gap-[var(--spacing-6)]">
+					 <div className="flex flex-col items-start md:items-center gap-[var(--spacing-6)]">
 						 <SplitText
 							 variant="fade"
 							 type="words"
@@ -103,7 +103,7 @@ export function Hero() {
 						 </SplitText>
 						 
 						 {/* Animated Arrow */}
-						 <div ref={arrowRef} className="text-brand">
+						 <div ref={arrowRef} className="text-brand hidden md:block">
 							 <ArrowCircleDown size={48} weight="light" />
 						 </div>
 					 </div>

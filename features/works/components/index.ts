@@ -1,2 +1,2 @@
 export * from "./hero";
-export * from "./case-study-slide";
+export * from "./case-study-template-new";

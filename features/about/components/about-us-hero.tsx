@@ -72,19 +72,19 @@ export function AboutUsHero() {
     }, { scope: containerRef });
 
     return (
-        <section ref={containerRef} className="w-full lg:min-h-screen bg-[var(--color-primary-25)] pt-[var(--spacing-15)] pb-[var(--spacing-15)] lg:pt-[var(--spacing-45)] lg:pb-[var(--spacing-25)] overflow-hidden">
+        <section ref={containerRef} className="w-full lg:min-h-screen bg-[var(--color-primary-25)] pt-[var(--spacing-25)] pb-[var(--spacing-15)] lg:pt-[var(--spacing-45)] lg:pb-[var(--spacing-25)] overflow-hidden">
             <div className="w-full px-[var(--spacing-5)] md:px-[var(--spacing-8)] lg:px-[var(--spacing-30)] flex flex-col lg:flex-row justify-between items-start gap-[var(--spacing-12)] lg:gap-[var(--spacing-37)]">
                 
                 {/* Title */}
                 <h1 
                     ref={headingRef}
-                    className="h1-desktop text-[length:var(--text-8xl)] leading-[length:var(--leading-ultra-loose)] md:text-[length:var(--text-7xl)] md:leading-[length:var(--leading-giant)] m-0 shrink-0 text-heading opacity-0 !normal-case"
+                    className="h1-desktop max-md:!text-[length:var(--text-9xl)] max-md:!leading-[length:var(--leading-super-loose)] md:text-[length:var(--text-7xl)] md:leading-[length:var(--leading-giant)] m-0 shrink-0 text-heading opacity-0 !normal-case"
                 >
                     Our <span className="text-[var(--color-primary-500)]">History</span>
                 </h1>
                 
                 {/* Description */}
-                <div className="w-full max-w-[590px] flex flex-col gap-[var(--spacing-6)] text-dark-body text-lg md:text-xl leading-[1.6] lg:pt-[var(--spacing-3)]">
+                <div className="w-full max-w-[590px] flex flex-col gap-[var(--spacing-6)] text-dark-body max-md:!text-[length:var(--text-base)] md:!text-[length:var(--text-xl)] max-md:leading-[1.6] md:!leading-[length:var(--leading-normal)] lg:pt-[var(--spacing-3)]">
                     <SplitText
                         variant="fade"
                         type="words"
@@ -107,7 +107,7 @@ export function AboutUsHero() {
             </div>
             
             {/* Continuous Marquee Image Gallery */}
-            <div className="mt-[var(--spacing-37)] lg:mt-[var(--spacing-50)] w-full overflow-hidden">
+            <div className="mt-[length:var(--spacing-20)] md:mt-[length:var(--spacing-37)] w-full overflow-hidden">
                 <div className="flex w-full overflow-hidden whitespace-nowrap">
                     <div ref={marqueeRef} className="flex flex-nowrap w-max cursor-pointer">
                         {/* First Block */}

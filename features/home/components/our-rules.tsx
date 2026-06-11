@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Heart, Books, Cross, Mountains, Target, RocketLaunch } from "@phosphor-icons/react";
+import { AnimatedServiceCard } from "@/shared/components/ui";
 
 const initialRules = [
   { 
@@ -76,10 +77,25 @@ export function OurRules() {
   
   const [isContainerHovered, setIsContainerHovered] = useState(false);
   const [hoveredWordId, setHoveredWordId] = useState<number | null>(null);
+  const [isMounted, setIsMounted] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   const nextId = useRef(initialRules.length + 1);
 
   useEffect(() => {
+    setIsMounted(true);
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => {
+      window.removeEventListener("resize", checkMobile);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!isMounted || isMobile) return;
     if (isContainerHovered) return;
 
     const timer = setInterval(() => {
@@ -94,7 +110,37 @@ export function OurRules() {
     }, 2500); 
 
     return () => clearInterval(timer);
-  }, [isContainerHovered]);
+  }, [isContainerHovered, isMobile, isMounted]);
+
+  if (isMounted && isMobile) {
+    return (
+      <section className="w-full bg-white px-[var(--spacing-5)] py-[var(--spacing-15)] overflow-hidden" data-name="Our Values Mobile">
+        <div className="w-full flex flex-col gap-[var(--spacing-15)]">
+          {/* Header */}
+          <div className="flex flex-col gap-[var(--spacing-8)]">
+            <h2 className="font-display font-bold h2-desktop max-md:!text-[length:var(--text-9xl)] max-md:!leading-[length:var(--leading-super-loose)] text-heading m-0">
+              <span className="text-[color:var(--color-primary-500)]">Rules</span> We Play By
+            </h2>
+            <p className="font-sans font-medium text-[length:var(--text-base)] text-dark-body m-0">
+              Sad but true, we're not without a conscience. Even the best have a code. These values keep us sharp as we plot industry domination.
+            </p>
+          </div>
+
+          {/* Vertical Stack of Cards */}
+          <div className="flex flex-col gap-[var(--spacing-5)] w-full">
+            {initialRules.map((item, index) => (
+              <AnimatedServiceCard 
+                key={index} 
+                icon={item.Icon}
+                title={item.text}
+                description={item.description} 
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="w-full bg-white py-[100px] md:py-[180px] overflow-hidden" data-name="Our Values">

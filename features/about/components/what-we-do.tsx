@@ -62,6 +62,14 @@ export function WhatWeDo() {
 
     useGSAP(
         () => {
+            if (window.innerWidth < 768) {
+                // Ensure heading is visible on mobile where animations are disabled
+                if (headingRef.current) {
+                    gsap.set(headingRef.current, { opacity: 1 });
+                }
+                return;
+            }
+
             // Center-align origin of swipe images
             gsap.set(".swipeimage", { yPercent: -50, xPercent: -50, autoAlpha: 0 });
 
@@ -156,7 +164,7 @@ export function WhatWeDo() {
                     <div className="flex flex-col gap-6 max-w-[540px]">
                         <h2 
                             ref={headingRef}
-                            className="h2-desktop text-heading opacity-0 !normal-case"
+                            className="h2-desktop max-md:!text-[length:var(--text-9xl)] max-md:!leading-[length:var(--leading-super-loose)] text-heading opacity-0 !normal-case"
                         >
                             What We <span className="text-[var(--color-primary-500)]">Do</span>
                         </h2>
@@ -165,7 +173,7 @@ export function WhatWeDo() {
                             type="words"
                             delay={0.8}
                             threshold={1}
-                            className="font-sans text-dark-body text-[16px] md:text-[18px] leading-relaxed m-0"
+                            className="font-sans text-dark-body max-md:!text-[length:var(--text-base)] md:!text-[length:var(--text-xl)] max-md:leading-[1.6] md:!leading-[length:var(--leading-normal)] m-0"
                         >
                             With our exceptionally expansive knowledge of diverse industries, we offer our sharks a host of services that ensure intergalactic domination.
                         </SplitText>
@@ -177,7 +185,7 @@ export function WhatWeDo() {
                     {services.map((service, index) => (
                         <div
                             key={index}
-                            className={`service-row grid grid-cols-1 lg:grid-cols-12 gap-[var(--spacing-6)] lg:gap-0 py-[var(--spacing-10)] lg:py-[var(--spacing-12)] border-t border-[var(--border-default)] ${index === services.length - 1 ? 'border-b' : ''
+                            className={`service-row grid grid-cols-1 lg:grid-cols-12 gap-[var(--spacing-6)] lg:gap-0 py-[var(--spacing-10)] lg:py-[var(--spacing-12)] border-t border-[var(--border-default)] max-md:border-t-[var(--border-stroke)] ${index === services.length - 1 ? 'border-b max-md:border-b-[var(--border-stroke)]' : ''
                                 } cursor-pointer relative`}
                         >
                             {/* Cursor floating image */}
@@ -192,12 +200,12 @@ export function WhatWeDo() {
                             </div>
 
                             <div className="lg:col-span-6">
-                                <h3 className="font-display font-medium text-3xl md:!text-[28px] leading-[1.2] text-heading whitespace-pre-wrap">
+                                <h3 className="font-display font-medium max-md:!text-[length:var(--text-2xl)] md:!text-[28px] max-md:!leading-[1] md:leading-[1.2] text-heading whitespace-pre-wrap">
                                     {service.title}
                                 </h3>
                             </div>
                             <div className="lg:col-span-5 lg:col-start-8">
-                                <p className="text-dark-body text-lg lg:!text-xl leading-[1.4] max-w-[440px] lg:ml-auto">
+                                <p className="text-dark-body max-md:!text-[length:var(--text-base)] text-lg lg:!text-xl leading-[1.4] max-w-[440px] lg:ml-auto">
                                     {service.description}
                                 </p>
                             </div>

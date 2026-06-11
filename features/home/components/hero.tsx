@@ -148,17 +148,17 @@ export function Hero() {
 			<div className="absolute inset-0 gradient-overlay-dark" aria-hidden="true" />
 
 			{/* Content Container */}
-			<div className="relative z-10 w-full min-h-screen flex flex-col justify-end px-[var(--spacing-5)] md:px-[var(--spacing-25)] lg:px-[var(--spacing-30)] pb-[var(--spacing-25)]">
+			<div className="relative z-10 w-full min-h-screen flex flex-col justify-end px-[var(--spacing-5)] md:px-[var(--spacing-25)] lg:px-[var(--spacing-30)] pb-[var(--spacing-10)] md:pb-[var(--spacing-25)]">
 				<div className="flex flex-col md:flex-row justify-between items-start gap-[var(--spacing-6)] md:gap-[var(--spacing-10)] lg:gap-[var(--spacing-15)]">
 					{/* Heading - Manual GSAP + Scramble */}
 					<h1
 						ref={headingRef}
-						className="h1-desktop !text-[2.65rem] !leading-[1.15] md:!text-[length:var(--text-7xl)] md:!leading-[length:var(--leading-giant)] text-inverse max-w-[1000px] opacity-0 !normal-case m-0"
+						className="h1-desktop !text-[length:var(--text-9xl)] !leading-[length:var(--leading-super-loose)] md:!text-[length:var(--text-7xl)] md:!leading-[length:var(--leading-giant)] text-inverse max-w-[1000px] opacity-0 !normal-case m-0"
 					>
 						{/* Line 1 */}
 						<span className="block">We&apos;ll Help You</span>
 						{/* Line 2 – scramble word */}
-						<span className="scramble-word text-brand inline-block w-[8rem] md:w-[12rem] lg:w-[22rem] transition-none text-left">Outthink,</span>
+						<span className="scramble-word text-brand inline-block w-[8rem] md:w-[var(--spacing-30)] md:w-[12rem] lg:w-[22rem] transition-none text-left">Outthink,</span>
 						{/* Line 3 */}
 						<span className="block">The Competition.</span>
 					</h1>
@@ -171,7 +171,7 @@ export function Hero() {
 							type="words"
 							delay={0.8}
 							threshold={1}
-							className="p3-main-body-text text-inverse"
+							className="p3-main-body-text !text-[length:var(--text-base)] md:!text-[length:var(--text-xl)] text-inverse"
 						>
 							At Takeout Media, we are relentlessly effective problem-solvers who help ambitious brands outthink, outpace, and outlast their competition. In the industry, we are known to be ruthlessly effective and ridiculously creative.
 						</SplitText>
@@ -182,7 +182,7 @@ export function Hero() {
 								type="words"
 								delay={1.0}
 								threshold={1}
-								className="p3-main-body-text text-inverse mb-0"
+								className="p3-main-body-text !text-[length:var(--text-base)] md:!text-[length:var(--text-xl)] text-inverse mb-0"
 							>
 								But for the sake of conversation, you can call us a technology driven full-service communications and advertising company.
 							</SplitText>

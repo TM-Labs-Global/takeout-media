@@ -1,6 +1,6 @@
 "use client";
 
-import { Hero, CaseStudySlide } from "../components";
+import { Hero, CaseStudyTemplateNew } from "../components";
 
 /**
  * WorksPage Component
@@ -12,7 +12,7 @@ export function WorksPage() {
     return (
         <main className="flex flex-col w-full min-h-screen bg-[var(--background)] font-sans">
             <Hero />
-            <CaseStudySlide />
+            <CaseStudyTemplateNew />
         </main>
     );
 }

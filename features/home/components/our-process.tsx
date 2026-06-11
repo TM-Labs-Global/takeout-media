@@ -22,7 +22,7 @@ export function OurProcess() {
                             Our Only Goal Is To See You <span className="text-[color:var(--color-primary-500)]">Win</span>
                         </SplitText>
                         
-                        <p className="p3-main-body-text text-dark-body">
+                        <p className="p3-main-body-text !text-[length:var(--text-base)] md:!text-[length:var(--text-xl)] text-dark-body">
                             <strong className="font-bold">Data. Design. Strategy:</strong> The master keys for intergalactic domination
                         </p>
                     </div>

@@ -34,3 +34,21 @@
 .gradient-overlay-dark {
     background: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.84) 100%);
 }
+
+/* Premium CSS Marquee Loop Animation */
+@keyframes testimonial-marquee-loop {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.testimonial-marquee-track {
+  display: flex;
+  width: max-content;
+  gap: 0;
+  animation: testimonial-marquee-loop 55s linear infinite;
+  will-change: transform;
+}
