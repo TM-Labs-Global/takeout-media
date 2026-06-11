@@ -57,7 +57,7 @@ export function Footer() {
                                 { name: "HOME", href: "/" },
                                 { name: "ABOUT US", href: "/about-us" },
                                 { name: "OUR WORKS", href: "/our-works" },
-                                { name: "CONTACT US", href: "mailto:info@takeoutmedia.xyz" }
+                                { name: "CONTACT US", href: "/contact" }
                             ].map((link) => (
                                 <Link
                                     key={link.name}
@@ -136,10 +136,9 @@ export function Footer() {
                     </div>
                 </div>
 
-
                 {/* Bottom Giant "Let's Talk" */}
-                <a 
-                    href="mailto:info@takeoutmedia.xyz"
+                <Link 
+                    href="/contact"
                     className="flex items-center gap-[var(--spacing-5)] lg:gap-[var(--spacing-11)] w-fit group cursor-pointer"
                 >
                     <h1 className="!font-display font-bold text-inverse group-hover:!text-[var(--color-secondary-500)] transition-colors duration-300 !text-[14.5vw] lg:!text-[18.4vw] leading-none whitespace-nowrap">
@@ -151,7 +150,7 @@ export function Footer() {
                             className="text-inverse group-hover:!text-[var(--color-secondary-500)] transition-colors duration-300 w-[48px] h-[48px] lg:w-[68.9px] lg:h-[68.9px] shrink-0"
                         />
                     </div>
-                </a>
+                </Link>
 
             </div>
 

@@ -16,7 +16,7 @@ const TMLabsLogo = () => (
     {/* Colored Logo */}
     <div className="absolute inset-0 flex items-center justify-center transition-opacity duration-300 opacity-100 group-hover:opacity-0">
       <Image
-        src="/pictures/sbu-logos/colored/tm-labs-outline.svg"
+        src="/pictures/sbu-logos/colored/TM Labs Outline.svg"
         alt="TM Labs"
         width={80}
         height={80}
@@ -26,7 +26,7 @@ const TMLabsLogo = () => (
     {/* White Logo */}
     <div className="absolute inset-0 flex items-center justify-center transition-opacity duration-300 opacity-0 group-hover:opacity-100">
       <Image
-        src="/pictures/sbu-logos/tm-labs-logo-white.svg"
+        src="/pictures/sbu-logos/white/TM Labs Outline 1.svg"
         alt="TM Labs White"
         width={80}
         height={80}
@@ -41,7 +41,7 @@ const DesignTeemLogo = () => (
     {/* Colored Logo */}
     <div className="absolute inset-0 flex items-center justify-center transition-opacity duration-300 opacity-100 group-hover:opacity-0">
       <Image
-        src="/pictures/sbu-logos/colored/design-teem.svg"
+        src="/pictures/sbu-logos/colored/Design Teem.svg"
         alt="Design Teem"
         width={80}
         height={80}
@@ -51,7 +51,7 @@ const DesignTeemLogo = () => (
     {/* White Logo */}
     <div className="absolute inset-0 flex items-center justify-center transition-opacity duration-300 opacity-0 group-hover:opacity-100">
       <Image
-        src="/pictures/sbu-logos/design-teem.svg"
+        src="/pictures/sbu-logos/white/Design Teem.svg"
         alt="Design Teem White"
         width={80}
         height={80}
@@ -66,7 +66,7 @@ const IngeneStudiosLogo = () => (
     {/* Colored Logo */}
     <div className="absolute inset-0 flex items-center justify-center transition-opacity duration-300 opacity-100 group-hover:opacity-0">
       <Image
-        src="/pictures/sbu-logos/colored/ingene-studios.svg"
+        src="/pictures/sbu-logos/colored/ingene studios.svg"
         alt="Ingene Studios"
         width={80}
         height={80}
@@ -76,7 +76,7 @@ const IngeneStudiosLogo = () => (
     {/* White Logo */}
     <div className="absolute inset-0 flex items-center justify-center transition-opacity duration-300 opacity-0 group-hover:opacity-100">
       <Image
-        src="/pictures/sbu-logos/ingene.svg"
+        src="/pictures/sbu-logos/white/Ingene.svg"
         alt="Ingene Studios White"
         width={80}
         height={80}
@@ -89,9 +89,9 @@ const IngeneStudiosLogo = () => (
 const TMFoundationLogo = () => (
   <div className="relative w-full h-12 md:h-14 lg:h-16">
     {/* Colored Logo */}
-    <div className="absolute inset-0 flex items-center justify-start lg:justify-center transition-opacity duration-300 opacity-100 group-hover:opacity-0">
+    <div className="absolute inset-0 flex items-center justify-start transition-opacity duration-300 opacity-100 group-hover:opacity-0">
       <Image
-        src="/pictures/sbu-logos/colored/tm-foundation.png"
+        src="/pictures/sbu-logos/colored/tm-Foundation-logo-color.png"
         alt="TM Foundation"
         width={200}
         height={64}
@@ -99,7 +99,7 @@ const TMFoundationLogo = () => (
       />
     </div>
     {/* White Logo */}
-    <div className="absolute inset-0 flex items-center justify-start lg:justify-center transition-opacity duration-300 opacity-0 group-hover:opacity-100">
+    <div className="absolute inset-0 flex items-center justify-start transition-opacity duration-300 opacity-0 group-hover:opacity-100">
       <Image
         src="/pictures/sbu-logos/white/tm-foundation-white.png"
         alt="TM Foundation White"
@@ -110,7 +110,6 @@ const TMFoundationLogo = () => (
     </div>
   </div>
 );
-
 
 const SUBSIDIARY_CARDS = [
   {

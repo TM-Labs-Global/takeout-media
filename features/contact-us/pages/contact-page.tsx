@@ -8,7 +8,7 @@ import { ContactForm } from "../components/contact-form";
 export function ContactPage() {
   return (
     <main
-      className="flex flex-col w-full bg-[var(--color-primary-25)] px-[var(--spacing-5)] pt-[var(--spacing-15)] pb-[var(--spacing-15)] lg:px-[var(--spacing-30)] lg:pt-[var(--spacing-45)] lg:pb-[var(--spacing-25)]"
+      className="flex flex-col w-full bg-[var(--color-primary-25)] px-[var(--spacing-5)] pt-[var(--spacing-25)] pb-[var(--spacing-15)] lg:px-[var(--spacing-30)] lg:pt-[var(--spacing-45)] lg:pb-[var(--spacing-25)]"
       data-name="ContactPage"
     >
       <div className="flex flex-col gap-[var(--spacing-12)] lg:gap-[var(--spacing-20)] w-full">
