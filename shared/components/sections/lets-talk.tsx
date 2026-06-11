@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useRef, useState } from 'react';
-import Link from 'next/link';
 import { ArrowCircleRight } from '@phosphor-icons/react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -154,8 +153,8 @@ export function LetsTalk() {
                     <p className="text-inverse text-center text-xl leading-tight max-w-[280px] font-regular">
                         Go from one in a million, to the only one.
                     </p>
-                    <Link
-                        href="/contact"
+                    <a
+                        href="mailto:info@takeoutmedia.xyz"
                         className="flex items-center gap-[var(--spacing-4)] md:gap-[var(--spacing-6)] pointer-events-auto"
                     >
                         <h2 className="display-desktop text-inverse text-center max-sm:!text-[var(--text-5xl)] max-sm:!leading-none sm:max-md:!text-[var(--text-8xl)] md:max-lg:!text-[var(--text-display2)] italic font-semibold lowercase first-letter:capitalize">
@@ -166,7 +165,7 @@ export function LetsTalk() {
                             weight="fill"
                             className="text-inverse w-[var(--spacing-8)] h-[var(--spacing-8)] md:w-[var(--spacing-10)] md:h-[var(--spacing-10)] flex-shrink-0"
                         />
-                    </Link>
+                    </a>
                 </div>
 
                 {/* Hera — The Image Grid */}

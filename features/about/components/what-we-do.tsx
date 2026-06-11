@@ -156,7 +156,7 @@ export function WhatWeDo() {
     );
 
     return (
-        <section className="w-full bg-[var(--color-primary-25)] py-[var(--spacing-10)] lg:py-[var(--spacing-25)]">
+        <section id="what-we-do" className="w-full bg-[var(--color-primary-25)] py-[var(--spacing-10)] lg:py-[var(--spacing-25)]">
             <div ref={containerRef} className="w-full px-[var(--spacing-5)] md:px-[var(--spacing-25)] lg:px-[var(--spacing-30)]">
 
                 {/* Header Row */}

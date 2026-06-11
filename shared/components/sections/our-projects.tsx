@@ -53,37 +53,43 @@ const PROJECTS = [
     title: "SURWASH",
     description: "Empowering a WASH Revolution with SURWASH: A Data-driven Social & Behavioral Change Communication Campaign.",
     src: "/pictures/surwash/surwash-softcover.png",
-    href: "/our-works"
+    href: "/our-works?project=surwash"
   },
   {
     title: "PORTO",
     description: "Reshaping the Narrative - Nigerian Police Reform.",
     src: "/pictures/porto/porto-materials-3.png",
-    href: "/our-works"
+    href: "/our-works?project=porto"
   },
   {
     title: "NIS",
-    description: "Unlocking a new investment frontier.",
-    src: "/pictures/hero-images/10-nis-entrance.webp",
-    href: "/our-works"
+    description: "Reshaping the Narrative — Nigerian Immigration Service.",
+    src: "/pictures/nis/stage2.jpg",
+    href: "/our-works?project=nis"
+  },
+  {
+    title: "DELIGHT FINANCE",
+    description: "Building the Future of Real Estate with Delight Finance.",
+    src: "/pictures/delight-finance/phone-mockup.png",
+    href: "/our-works?project=delight-finance"
   },
   {
     title: "COSGROVE",
     description: "Building the Future of Real Estate with Cosgrove.",
     src: "/pictures/cosgrove/board-design.jpg",
-    href: "/our-works"
+    href: "/our-works?project=cosgrove"
   },
   {
     title: "TOTAL ENERGIES",
     description: "Energizing a Global Brand: TotalEnergies' Journey to Sustainability",
     src: "/pictures/total/te-vals-day-poster-01.png",
-    href: "/our-works"
+    href: "/our-works?project=total-energies"
   },
   {
     title: "TOKUNBO",
     description: "Everything is on the line. The journey continues.",
     src: "/pictures/tokunbo/artboard1-large.jpeg",
-    href: "/our-works"
+    href: "/our-works?project=tokunbo"
   }
 ];
 

@@ -55,9 +55,9 @@ export function Footer() {
                         <div className="flex flex-col gap-[var(--spacing-5)] lg:gap-[var(--spacing-4)] shrink-0">
                             {[
                                 { name: "HOME", href: "/" },
-                                { name: "ABOUT US", href: "/about" },
-                                { name: "OUR WORK", href: "/our-work" },
-                                { name: "CONTACT US", href: "/contact" }
+                                { name: "ABOUT US", href: "/about-us" },
+                                { name: "OUR WORKS", href: "/our-works" },
+                                { name: "CONTACT US", href: "mailto:info@takeoutmedia.xyz" }
                             ].map((link) => (
                                 <Link
                                     key={link.name}
@@ -105,12 +105,12 @@ export function Footer() {
 
                         {/* 5. Direct Contact & Socials Column (Moved to end) */}
                         <div className="flex flex-col gap-[var(--spacing-5)] lg:gap-[var(--spacing-4)] shrink-0">
-                            <p className="text-inverse text-xl lg:text-2xl font-regular whitespace-nowrap">
+                            <a href="tel:+2348184324791" className="text-inverse text-xl lg:text-2xl font-regular whitespace-nowrap hover:opacity-80 transition-opacity">
                                 +234 818 432 4791
-                            </p>
-                            <p className="text-inverse text-xl lg:text-2xl font-regular whitespace-nowrap">
+                            </a>
+                            <a href="mailto:info@takeoutmedia.xyz" className="text-inverse text-xl lg:text-2xl font-regular whitespace-nowrap hover:opacity-80 transition-opacity">
                                 info@takeoutmedia.xyz
-                            </p>
+                            </a>
 
                              {/* Social Icons */}
                              <div className="flex items-center gap-[var(--spacing-5)] lg:gap-[var(--spacing-6)] mt-[var(--spacing-2)]">

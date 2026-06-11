@@ -1,5 +1,6 @@
 "use client";
 
+import Link from 'next/link';
 import { Database, PenNib, Strategy } from '@phosphor-icons/react';
 import { AnimatedServiceCard, SplitText, FadeIn } from '@/shared/components/ui';
 
@@ -29,14 +30,14 @@ export function OurProcess() {
                 </div>
 
                 {/* Dive Deeper button */}
-                <a
-                    href="#"
+                <Link
+                    href="/about-us#what-we-do"
                     className="btn btn-secondary w-fit"
                 >
                     <span className="btn-label-wrapper">
                         <span className="btn-label-text">Dive Deeper</span>
                     </span>
-                </a>
+                </Link>
             </div>
 
             {/* ── Service Cards ── */}

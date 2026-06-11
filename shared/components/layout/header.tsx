@@ -44,7 +44,7 @@ export function Header() {
         { name: 'HOME', href: '/' },
         { name: 'ABOUT US', href: '/about-us' },
         { name: 'OUR WORKS', href: '/our-works' },
-        { name: 'CONTACT US', href: '/contact' },
+        { name: 'CONTACT US', href: 'mailto:info@takeoutmedia.xyz' },
     ];
 
     return (
